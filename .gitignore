@@ -1,0 +1,8 @@
+.idea/
+bin/
+out/
+*.class
+biuoop*
+checkstyle*
+build.xml
+*.iml
