@@ -2,6 +2,8 @@
 
 package com.company;
 
+import java.util.ArrayList;
+
 /**
  * An object representing a Line, includes a start point, an end point, and the slope.
  */
@@ -53,6 +55,13 @@ public class Line {
     }
 
     /**
+     * @return The slope of the line.
+     */
+    public double getSlope() {
+        return slope;
+    }
+
+    /**
      * @return The middle of the line.
      */
     public Point middle() {
@@ -83,13 +92,16 @@ public class Line {
         return new Point(xValue, slope * (xValue - start.getX()) + start.getY());
     }
 
-    private boolean contains(Point point) {
+    /**
+     * @param point The point to be examined.
+     * @return True if the line contains the point, False otherwise.
+     */
+    public boolean contains(Point point) {
         if (isConstantX) {
             return (Math.abs(point.getX() - start.getX()) <= 1E-10
                     && point.getY() >= start.getY()
                     && point.getY() <=  end.getY());
         } else {
-            //TODO CHECK
             return (pointByXValue(point.getX()).equals(point)
                     && ((start.getX() <= point.getX() && point.getX() <= end.getX())));
         }
@@ -146,5 +158,24 @@ public class Line {
     public boolean equals(Line other) {
         return (start.equals(other.start)
              && end.equals(other.end));
+    }
+
+    /**
+     * @param rect The rectangle to be examined for intersection.
+     * @return If this line does not intersect with the rectangle, return null.
+     * Otherwise, return the closest intersection point to the start of the line.
+     */
+    public Point closestIntersectionToStartOfLine(Rectangle rect)  {
+        ArrayList<Point> list = rect.intersectionPoints(this);
+        double min = -1;
+        Point closest = null;
+        for (Point point : list) {
+            if (min > start.distance(point)) {
+                closest = point;
+                min = start.distance(point);
+            }
+        }
+
+        return closest;
     }
 }

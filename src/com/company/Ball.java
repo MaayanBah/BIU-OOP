@@ -4,37 +4,40 @@ package com.company;
 
 import biuoop.DrawSurface;
 
-import biuoop.GUI;
-
 /**
- * A class for graphical balls.
+ * A class for graphical ball.
  */
-public class Ball {
+public class Ball implements Sprite {
     private Velocity velocity;
     private Point center;
-    private final int radius;
+    private int radius;
     private java.awt.Color color;
+    private GameEnvironment environment;
 
     /**
      * @param center The center point of the ball.
      * @param radius The balls radius.
      * @param color  The balls color.
+     * @param gameEnvironment
      */
-    public Ball(Point center, int radius, java.awt.Color color) {
-        this(center, radius, color, new Velocity(0, 0));
+    public Ball(Point center, int radius, java.awt.Color color, GameEnvironment gameEnvironment) {
+        this(center, radius, color, new Velocity(0, 0), gameEnvironment);
     }
+
 
     /**
      * @param center The center point of the ball.
      * @param radius The balls radius.
      * @param color  The balls color.
      * @param velocity  The balls velocity.
+     * @param gameEnvironment
      */
-    public Ball(Point center, int radius, java.awt.Color color, Velocity velocity) {
+    public Ball(Point center, int radius, java.awt.Color color, Velocity velocity, GameEnvironment gameEnvironment) {
         this.center = center;
         this.radius = radius;
         this.color = color;
         this.velocity = velocity;
+        this.environment = gameEnvironment;
     }
 
     /**
@@ -42,10 +45,19 @@ public class Ball {
      * @param y      The y value of the balls center.
      * @param radius The balls radius.
      * @param color  The balls color.
+     * @param gameEnvironment The game environment
      */
-    public Ball(double x, double y, int radius, java.awt.Color color) {
-        this(new Point(x, y), radius, color);
+    public Ball(double x, double y, int radius, java.awt.Color color, GameEnvironment gameEnvironment) {
+        this(new Point(x, y), radius, color, gameEnvironment);
     }
+
+    /**
+     * currently move one step, will be changed.
+     */
+    public void timePassed() {
+        moveOneStep();
+    }
+
 
     /**
      * @return The x value of the balls center.
@@ -84,7 +96,7 @@ public class Ball {
 
     /**
      * @param surface The drawing surface for the ball to be drawn on.
-     *                draw the ball on the given DrawSurface.
+     * draw the ball on the given DrawSurface.
      */
     public void drawOn(DrawSurface surface) {
         surface.setColor(color);
@@ -121,39 +133,31 @@ public class Ball {
         return velocity;
     }
 
-// todo grammar, and also why does it work?
     /**
-     * @param right The right bottom point of the rectangle.
-     * @param left The left top point of the rectangle.
-     */
-    public void moveOneStepInside(Point left, Point right) {
-        center = getVelocity().applyToPoint(this.center);
-
-        if ((center.getX() + radius) >= right.getX()) {
-            setVelocity(velocity.getXVelocity() * -1, velocity.getYVelocity());
-            setCenter(right.getX() - (center.getX() - right.getX() + 2 * radius), center.getY());
-        }
-
-        if (center.getX() - radius <= left.getX()) {
-            setVelocity(velocity.getXVelocity() * -1, velocity.getYVelocity());
-            setCenter(left.getX() + (left.getX() - center.getX()  + 2 * radius), center.getY());
-        }
-        if ((center.getY() + radius) >= right.getY()) {
-            setVelocity(velocity.getXVelocity(), velocity.getYVelocity() * -1);
-            setCenter(center.getX(), right.getY() - (center.getY() - right.getY() + 2 * radius));
-        }
-        if (center.getY() - radius <= left.getY()) {
-            setVelocity(velocity.getXVelocity(), velocity.getYVelocity() * -1);
-            setCenter(center.getX(),  left.getY() + (left.getY() - center.getY() + 2 * radius));
-        }
-
-    }
-    /**
-     * @param gui The graphical user interface.
      *            Use one step according to the ball velocity.
      */
-    public void moveOneStep(GUI gui) {
-        moveOneStepInside(new Point(0, 0),
-                          new Point(gui.getDrawSurface().getWidth(), gui.getDrawSurface().getHeight()));
+    public void moveOneStep() {
+        Line line = new Line(center, getVelocity().applyToPoint(this.center));
+        double angleOfSlope = Math.atan(line.getSlope());
+        if ((angleOfSlope < 0) == (line.end().getY() - line.start().getY() > 0)) {
+            angleOfSlope += Math.PI;
+        }
+
+        line = new Line(line.start(),
+                        new Point(line.end().getX() + radius * Math.cos(angleOfSlope),
+                                  line.end().getY() + radius * Math.sin(angleOfSlope)));
+        CollisionInfo collisionInfo = environment.getClosestCollision(line);
+        if (collisionInfo == null) {
+            center = getVelocity().applyToPoint(this.center);
+        } else {
+            velocity = collisionInfo.collisionObject().hit(collisionInfo.collisionPoint(), velocity);
+        }
+    }
+
+    /**
+     * @param g Add the ball to the game.
+     */
+    public void addToGame(Game g) {
+        g.addSprite(this);
     }
 }
