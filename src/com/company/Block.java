@@ -5,13 +5,17 @@ package com.company;
 import biuoop.DrawSurface;
 
 import java.awt.Color;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
- * dfvfdggfb.
+ * A class for graphical block.
  */
-public class Block implements Collidable, Sprite {
+public class Block implements Collidable, Sprite, HitNotifier {
     private final Rectangle collisionRectangle;
     private final java.awt.Color color;
+    private List<HitListener> hitListeners;
 
     /**
      * @param rectangle Create a new block.
@@ -19,6 +23,7 @@ public class Block implements Collidable, Sprite {
     public Block(Rectangle rectangle) {
         this.color = Color.black;
         this.collisionRectangle = rectangle;
+        this.hitListeners = new LinkedList<HitListener>();
     }
 
     /**
@@ -28,6 +33,18 @@ public class Block implements Collidable, Sprite {
     public Block(Rectangle rectangle, java.awt.Color color) {
         this.color = color;
         this.collisionRectangle = rectangle;
+        this.hitListeners = new LinkedList<HitListener>();
+    }
+
+    /**
+     * @param rectangle The rectangle of the block
+     * @param color The block's color
+     * @param hitListeners The list of the listener to the Block.
+     */
+    public Block(Rectangle rectangle, java.awt.Color color, List<HitListener> hitListeners) {
+        this.color = color;
+        this.collisionRectangle = rectangle;
+        this.hitListeners = hitListeners;
     }
 
     /**
@@ -40,14 +57,18 @@ public class Block implements Collidable, Sprite {
     /**
      * @param collisionPoint  the point of the colliding object.
      * @param currentVelocity The point's velocity;
+     * @param hitter The ball hitting the block.
      * @return The new velocity expected after the hit (based on
      *         the force the object inflicted on us).
      */
-    public Velocity hit(Point collisionPoint, Velocity currentVelocity) {
+    //todo fix - combine notifyHit
+    public Velocity hit(Point collisionPoint, Velocity currentVelocity, Ball hitter) {
         if (collisionRectangle.getRight().contains(collisionPoint)
             || collisionRectangle.getLeft().contains(collisionPoint)) {
+            notifyHit(hitter);
             return new Velocity(currentVelocity.getXVelocity() * -1, currentVelocity.getYVelocity());
         }
+        notifyHit(hitter);
         return new Velocity(currentVelocity.getXVelocity(), currentVelocity.getYVelocity() * -1);
     }
 
@@ -75,10 +96,42 @@ public class Block implements Collidable, Sprite {
     }
 
     /**
-     * @param g Add the block to the game.
+     * @param game Add the block to the game.
      */
-    public void addToGame(Game g) {
-        g.addSprite(this);
-        g.addCollidable(this);
+    public void addToGame(Game game) {
+        game.addSprite(this);
+        game.addCollidable(this);
+    }
+
+    /**
+     * @param game Remove the block from the game.
+     */
+    public void removeFromGame(Game game) {
+        game.removeSprite(this);
+        game.removeCollidable(this);
+    }
+
+    private void notifyHit(Ball hitter) {
+        // Make a copy of the hitListeners before iterating over them.
+        List<HitListener> listeners = new ArrayList<HitListener>(this.hitListeners);
+        // Notify all listeners about a hit event:
+        for (HitListener hl : listeners) {
+            hl.hitEvent(this, hitter);
+        }
+    }
+
+    /**
+     * @param hl The hitListener to be added to the HitListeners list of the block.
+     */
+    public void addHitListener(HitListener hl) {
+        hitListeners.add(hl);
+    }
+
+    /**
+     * @param hl The hitListener to be removed to the HitListeners list of the block.
+     */
+    public void removeHitListener(HitListener hl) {
+        hitListeners.remove(hl);
     }
 }
+

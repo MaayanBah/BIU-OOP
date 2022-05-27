@@ -150,7 +150,7 @@ public class Ball implements Sprite {
         if (collisionInfo == null) {
             center = getVelocity().applyToPoint(this.center);
         } else {
-            velocity = collisionInfo.collisionObject().hit(collisionInfo.collisionPoint(), velocity);
+            velocity = collisionInfo.collisionObject().hit(collisionInfo.collisionPoint(), velocity, this);
         }
     }
 
@@ -159,5 +159,12 @@ public class Ball implements Sprite {
      */
     public void addToGame(Game g) {
         g.addSprite(this);
+    }
+
+    /**
+     * @param game Remove the block from the game.
+     */
+    public void removeFromGame(Game game) {
+        game.removeSprite(this);
     }
 }

@@ -31,11 +31,20 @@ public class SpriteCollection {
         spriteList.add(s);
     }
 
+
+    /**
+     * @param s the sprite to be removed.
+     */
+    public void removeSprite(Sprite s) {
+        spriteList.remove(s);
+    }
+
     /**
      * call timePassed() on all sprites.
      */
     public void notifyAllTimePassed() {
-        for (Sprite sprite : spriteList) {
+        ArrayList<Sprite> copy = new ArrayList<Sprite>(spriteList);
+        for (Sprite sprite : copy) {
             sprite.timePassed();
         }
     }

@@ -33,6 +33,13 @@ public class GameEnvironment {
     }
 
     /**
+     * @param c Remove the given collidable object from the collidable list.
+     */
+    public void removeCollidable(Collidable c) {
+        collidableList.remove(c);
+    }
+
+    /**
      * @return The collidable list.
      */
     public ArrayList<Collidable> getCollidableList() {
