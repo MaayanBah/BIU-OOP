@@ -2,11 +2,10 @@
 
 package com.company;
 
-        import biuoop.DrawSurface;
-        import biuoop.GUI;
+import biuoop.DrawSurface;
+import biuoop.GUI;
 
-        import java.awt.Color;
-        import java.util.ArrayList;
+import java.awt.Color;
 
 /**
  * A class that draws a bouncing ball animation.
@@ -17,6 +16,7 @@ public class Check {
      * @param start The balls center point.
      * @param dx    The amount to be added to the x value of the ball.
      * @param dy    The amount to be added to the y value of the ball.
+     * @param gameEnvironment The game environment
      */
     public static void drawAnimation(Point start, double dx, double dy, GameEnvironment gameEnvironment) {
         GUI gui = new GUI("Bouncing Ball Animation", 200, 200);

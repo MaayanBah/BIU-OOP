@@ -7,14 +7,14 @@ package com.company;
  * of the number of blocks that remain.
  */
 public class BlockRemover implements HitListener {
-    private Game game;
-    private Counter remainingBlocks;
+    private final GameLevel game;
+    private final Counter remainingBlocks;
 
     /**
      * @param game The game.
      * @param remainingBlocks The ball counter - will be updated.
      */
-    public BlockRemover(Game game, Counter remainingBlocks) {
+    public BlockRemover(GameLevel game, Counter remainingBlocks) {
         this.game = game;
         this.remainingBlocks = remainingBlocks;
     }

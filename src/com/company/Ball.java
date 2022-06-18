@@ -10,15 +10,15 @@ import biuoop.DrawSurface;
 public class Ball implements Sprite {
     private Velocity velocity;
     private Point center;
-    private int radius;
-    private java.awt.Color color;
-    private GameEnvironment environment;
+    private final int radius;
+    private final java.awt.Color color;
+    private final GameEnvironment environment;
 
     /**
      * @param center The center point of the ball.
      * @param radius The balls radius.
      * @param color  The balls color.
-     * @param gameEnvironment
+     * @param gameEnvironment The game environment
      */
     public Ball(Point center, int radius, java.awt.Color color, GameEnvironment gameEnvironment) {
         this(center, radius, color, new Velocity(0, 0), gameEnvironment);
@@ -30,7 +30,7 @@ public class Ball implements Sprite {
      * @param radius The balls radius.
      * @param color  The balls color.
      * @param velocity  The balls velocity.
-     * @param gameEnvironment
+     * @param gameEnvironment The game environment
      */
     public Ball(Point center, int radius, java.awt.Color color, Velocity velocity, GameEnvironment gameEnvironment) {
         this.center = center;
@@ -52,7 +52,7 @@ public class Ball implements Sprite {
     }
 
     /**
-     * currently move one step, will be changed.
+     * Move one step.
      */
     public void timePassed() {
         moveOneStep();
@@ -100,7 +100,7 @@ public class Ball implements Sprite {
      */
     public void drawOn(DrawSurface surface) {
         surface.setColor(color);
-        surface.fillCircle((int) center.getX(), (int) center.getY(), (int) radius);
+        surface.fillCircle((int) center.getX(), (int) center.getY(), radius);
     }
 
     /**
@@ -157,14 +157,14 @@ public class Ball implements Sprite {
     /**
      * @param g Add the ball to the game.
      */
-    public void addToGame(Game g) {
+    public void addToGame(GameLevel g) {
         g.addSprite(this);
     }
 
     /**
-     * @param game Remove the block from the game.
+     * @param gameLevel Remove the block from the game.
      */
-    public void removeFromGame(Game game) {
-        game.removeSprite(this);
+    public void removeFromGame(GameLevel gameLevel) {
+        gameLevel.removeSprite(this);
     }
 }

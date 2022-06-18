@@ -14,6 +14,7 @@ public interface Collidable {
     /**
      * @param collisionPoint the point of the colliding object.
      * @param currentVelocity The point's velocity;
+     * @param hitter The hitting ball
      * @return The new velocity expected after the hit (based on
      *         the force the object inflicted on us).
      */

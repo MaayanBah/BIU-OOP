@@ -20,10 +20,12 @@
 //    public static void drawAnimation(Point start, double dx, double dy) {
 //        GUI gui = new GUI("Bouncing Ball Animation", 200, 200);
 //        biuoop.Sleeper sleeper = new biuoop.Sleeper();
-//        Ball ball = new Ball(start.getX(), start.getY(), 10, Color.black);
+//        GameEnvironment gameEnvironment = new GameEnvironment();
+//        Ball ball = new Ball(start.getX(), start.getY(), 10, Color.black, new GameEnvironment());
+//        gameEnvironment.addCollidable(new Block(new Rectangle(new Point((double) 1, (double) 1), 1, 1)));
 //        ball.setVelocity(dx, dy);
 //        while (true) {
-//            ball.moveOneStep(gui);
+//            ball.moveOneStep();
 //            DrawSurface d = gui.getDrawSurface();
 //            ball.drawOn(d);
 //            gui.show(d);

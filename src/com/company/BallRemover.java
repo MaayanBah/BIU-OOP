@@ -6,8 +6,8 @@ package com.company;
  * A class responsible for ball removal.
  */
 public class BallRemover implements HitListener {
-    private Game game;
-    private Counter ballCounter;
+    private final GameLevel game;
+    private final Counter ballCounter;
 
     /**
      * @param game The game.
@@ -15,7 +15,7 @@ public class BallRemover implements HitListener {
      * a BallRemover is in charge of removing balls from the game, as well as keeping count
      * of the number of balls that remain.
      */
-    public BallRemover(Game game, Counter ballCounter) {
+    public BallRemover(GameLevel game, Counter ballCounter) {
         this.game = game;
         this.ballCounter = ballCounter;
     }

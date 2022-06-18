@@ -15,7 +15,7 @@ import java.util.List;
 public class Block implements Collidable, Sprite, HitNotifier {
     private final Rectangle collisionRectangle;
     private final java.awt.Color color;
-    private List<HitListener> hitListeners;
+    private final List<HitListener> hitListeners;
 
     /**
      * @param rectangle Create a new block.
@@ -98,7 +98,7 @@ public class Block implements Collidable, Sprite, HitNotifier {
     /**
      * @param game Add the block to the game.
      */
-    public void addToGame(Game game) {
+    public void addToGame(GameLevel game) {
         game.addSprite(this);
         game.addCollidable(this);
     }
@@ -106,7 +106,7 @@ public class Block implements Collidable, Sprite, HitNotifier {
     /**
      * @param game Remove the block from the game.
      */
-    public void removeFromGame(Game game) {
+    public void removeFromGame(GameLevel game) {
         game.removeSprite(this);
         game.removeCollidable(this);
     }

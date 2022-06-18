@@ -11,9 +11,9 @@ import java.awt.Color;
  * The player's paddle.
  */
 public class Paddle implements Sprite, Collidable {
-    private int screenWidth;
+    private final int screenWidth;
     static final int PADDLE_STEP_SIZE = 8;
-    private int wallSize;
+    private final int wallSize;
     private final biuoop.KeyboardSensor keyboard;
     private Rectangle collisionRectangle;
     private final Color color;
@@ -67,7 +67,8 @@ public class Paddle implements Sprite, Collidable {
      * Move the paddle one step to the right.
      */
     public void moveRight() {
-        if (collisionRectangle.getUpperLeft().getX() + collisionRectangle.getWidth() < screenWidth - wallSize - PADDLE_STEP_SIZE) {
+        if (collisionRectangle.getUpperLeft().getX()
+            + collisionRectangle.getWidth() < screenWidth - wallSize - PADDLE_STEP_SIZE) {
             collisionRectangle = new Rectangle(new Point(collisionRectangle.getUpperLeft().getX()
                     + PADDLE_STEP_SIZE,
                     this.collisionRectangle.getUpperLeft().getY()),
@@ -153,7 +154,7 @@ public class Paddle implements Sprite, Collidable {
      * @param g Add the paddle to the game.
      */
     // Add this paddle to the game.
-    public void addToGame(Game g) {
+    public void addToGame(GameLevel g) {
         g.addSprite(this);
         g.addCollidable(this);
     }
