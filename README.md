@@ -9,4 +9,9 @@ In the first stage, the goal is to prevent two balls from touching the ground be
 As the game progresses, clouds move across the backdrop, and hitting bricks causes apples to fall from the tree in the
 background.
 
-![image](https://github.com/MaayanBah/BIU-OOP/assets/84293984/ccdd2dd6-7a89-4005-b5f6-c241075b85b2)
+![image](https://github.com/MaayanBah/BIU-OOP/assets/84293984/17d175ef-3965-4482-a58c-503bdbc71a31)
+
+![image](https://github.com/MaayanBah/BIU-OOP/assets/84293984/e31cc359-153c-4b6b-ab48-35ff30c499fc)
+
+
+## Second Stage
