@@ -1,7 +1,7 @@
 # BIU-OOP
 
 This Java project is a first-year Object-Oriented Programming assignment at Bar-Ilan University.
-It features a game with an interactive background created solely using classes, without any images.
+It features a game with an interactive background created solely using classes, without any pre-rendered assets.
 
 ## Level One
 
