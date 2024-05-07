@@ -7,8 +7,7 @@ It features a game with an interactive background created solely using classes, 
 
 The first level is simple - you need to hit the brick in order to pass it.
 
-![image](https://github.com/MaayanBah/BIU-OOP/assets/84293984/c22623f8-1802-44b0-831c-5635230ec163){:height="200px" width="300px"}
-<img src="https://github.com/MaayanBah/BIU-OOP/assets/84293984/c22623f8-1802-44b0-831c-5635230ec163" alt="image" width="300" height="200">
+<img src="https://github.com/MaayanBah/BIU-OOP/assets/84293984/c22623f8-1802-44b0-831c-5635230ec163" alt="image" width="400" height="300">
 
 
 ## Level Two
