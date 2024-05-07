@@ -14,9 +14,9 @@ The first level is simple - you need to hit the brick in order to pass it.
 
 In the second level, your task is to target the bricks to allow rain to reach the grass.
 
-![image](https://github.com/MaayanBah/BIU-OOP/assets/84293984/8d4d3014-8d1d-431e-9903-e0aff4506638){:height="200px" width="300px"}
+<img src="https://github.com/MaayanBah/BIU-OOP/assets/84293984/8d4d3014-8d1d-431e-9903-e0aff4506638"  alt="image" width="400" height="300">
 
-![image](https://github.com/MaayanBah/BIU-OOP/assets/84293984/2ee89a27-d209-40a4-8f56-e67402754ef3){:height="200px" width="300px"}
+<img src="https://github.com/MaayanBah/BIU-OOP/assets/84293984/2ee89a27-d209-40a4-8f56-e67402754ef3"  alt="image" width="400" height="300">
 
 ## Level Three
 
@@ -24,19 +24,19 @@ In the third level, the goal is to prevent two balls from touching the ground be
 As the game progresses, clouds move across the backdrop, and hitting bricks causes apples to fall from the tree in the
 background.
 
-![image](https://github.com/MaayanBah/BIU-OOP/assets/84293984/17d175ef-3965-4482-a58c-503bdbc71a31){:height="200px" width="300px"}
+<img src="https://github.com/MaayanBah/BIU-OOP/assets/84293984/17d175ef-3965-4482-a58c-503bdbc71a31"  alt="image" width="400" height="300">
 
-![image](https://github.com/MaayanBah/BIU-OOP/assets/84293984/e31cc359-153c-4b6b-ab48-35ff30c499fc){:height="200px" width="300px"}
+<img src="https://github.com/MaayanBah/BIU-OOP/assets/84293984/e31cc359-153c-4b6b-ab48-35ff30c499fc"  alt="image" width="400" height="300">
 
 ## Level Four
 
 In the fourth level you need to strike the bricks to illuminate the surroundings.
 The more bricks you shatter, the brighter it becomes!
 
-![image](https://github.com/MaayanBah/BIU-OOP/assets/84293984/2e4baab2-e697-4b99-8e93-4f27c380a796){:height="200px" width="300px"}
+<img src="https://github.com/MaayanBah/BIU-OOP/assets/84293984/2e4baab2-e697-4b99-8e93-4f27c380a796"  alt="image" width="400" height="300">
 
-![image](https://github.com/MaayanBah/BIU-OOP/assets/84293984/541ef146-3397-4c55-9d6b-22b55e7e4914){:height="200px" width="300px"}
+<img src="https://github.com/MaayanBah/BIU-OOP/assets/84293984/541ef146-3397-4c55-9d6b-22b55e7e4914"  alt="image" width="400" height="300">
 
 The game is over when you turn on the light (you don't have to break all the bricks).
 
-![image](https://github.com/MaayanBah/BIU-OOP/assets/84293984/3c42342f-df6d-46e2-91b8-60419714b5ce){:height="200px" width="300px"}
+<img src="https://github.com/MaayanBah/BIU-OOP/assets/84293984/3c42342f-df6d-46e2-91b8-60419714b5ce"  alt="image" width="400" height="300">
